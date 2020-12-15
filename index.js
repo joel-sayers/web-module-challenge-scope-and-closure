@@ -62,10 +62,10 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){
+  return Math.floor(Math.random()*3);
 }
-
+console.log(inning());
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
@@ -81,19 +81,40 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(callback, num){
+  var home = 0;
+  var away = 0;
+  for (let i=0; i<num; i++) {
+    home += callback();
+    away += callback();
+  }
+  return { 'Home': home, 'Away': away }
 }
+
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
+function getInningScore(getInningScore, inning, number) {
   /*Your Code Here */
+  let eachTeamScore = [];
+  let homeScore =0;
+  let awayScore =0;
+  for (let i=0; i<number; i++){
+    homeScore = inning() + homeScore;
+    awayScore = inning() + awayScore;
+    eachTeamScore.push(`Inning ${i+1}: away ${awayScore} - Home ${homeScore}`)
+    if (homeScore!=awayScore);
+    
+  }
+  else {
+    console.log(`This game will require extar innings: Away ${awayScore} - ${homeScore}`);
+  }
+return eachTeamScore;
 }
-
+console.log(scoreboard(getInningScore, inning, 9));
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
